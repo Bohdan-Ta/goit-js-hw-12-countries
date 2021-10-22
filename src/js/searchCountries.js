@@ -2,12 +2,12 @@ import debounce from 'lodash.debounce';
 import refs from './refs'
 import { windowError, windowWarning }  from './notifications'
 import { createCountryList } from './createCountryList'
-import countryTpl from './listCountry.hbs'
-import countriesTpl from './countriesMarkFlag.hbs'
+import countryTpl from '../template/listCountry.hbs'
+import countriesTpl from '../template/countriesMarkFlag.hbs'
 import fetchCountries from './fetchCountries';
 
 export function findCounry(evt) {
-  if (evt.target.value === '') {
+  if (!evt.target.value) {
     return refs.countryLi.innerHTML = ''
   }
 
@@ -20,9 +20,7 @@ export function findCounry(evt) {
       createCountryList(countriesTpl, result)
     } else if (result.length === 1) {
       createCountryList(countryTpl, result)
-    } else if (result.status === 404) {
-      windowError()
-    }
+    } 
   })
 }
 

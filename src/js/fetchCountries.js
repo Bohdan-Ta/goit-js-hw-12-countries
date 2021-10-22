@@ -3,6 +3,8 @@ export default function fetchCountries(searchQuery) {
     .then(response => {
       if (response.ok) {
         return response.json()
+      } else if (result.status === 404) {
+        windowError()
       }
     }).catch(error => alert(error))
 }
